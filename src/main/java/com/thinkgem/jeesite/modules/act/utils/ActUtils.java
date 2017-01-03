@@ -19,11 +19,11 @@ import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.annotation.FieldName;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.utils.Encodes;
-import com.thinkgem.jeesite.common.utils.ObjectUtils;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.act.entity.Act;
 import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
+import org.springframework.util.ObjectUtils;
 
 /**
  * 流程工具
@@ -97,10 +97,10 @@ public class ActUtils {
 					if (m.getName().equals("getAct")){
 						Object act = m.invoke(entity, new Object[]{});
 						Method actMet = act.getClass().getMethod("getTaskId");
-						map.put("taskId", ObjectUtils.toString(m.invoke(act, new Object[]{}), ""));
+						map.put("taskId", ObjectUtils.getDisplayString(m.invoke(act, new Object[]{})));
 					}else{
 						field.add(StringUtils.uncapitalize(m.getName().substring(3)));
-						value.add(ObjectUtils.toString(m.invoke(entity, new Object[]{}), ""));
+						value.add(ObjectUtils.getDisplayString(m.invoke(entity, new Object[]{})));
 					}
 				}
 			}
