@@ -25,5 +25,9 @@
 		<constructor-arg index="5" value="${redis.database}" type="int" />
 		<constructor-arg index="6" value="${redis.clientName}"/> -->
 	</bean>
-	
+
+	<!-- 缓存配置 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:${ehcache.configFile}" />
+	</bean>
 </beans>
